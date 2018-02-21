@@ -6,6 +6,10 @@ const postSchema = new Schema({
   },
   caption: {
     type: String
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
 

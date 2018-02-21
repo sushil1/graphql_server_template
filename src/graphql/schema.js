@@ -13,11 +13,13 @@ export default `
     email:String!
     firstName:String
     lastName:String
+    avatar:String
   }
 
   type Post{
     title:String!
     caption:String!
+    user:User!
   }
 
   type Query{

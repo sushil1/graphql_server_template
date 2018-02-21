@@ -11,6 +11,9 @@ const userSchema = new Schema({
   lastName: {
     type: String
   },
+  avatar:{
+    type:String
+  }
   passwordHash: {
     type: String
   }
