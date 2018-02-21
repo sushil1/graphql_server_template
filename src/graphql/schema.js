@@ -17,22 +17,21 @@ export default `
   }
 
   type Post{
+    _id:ID!
     title:String!
     caption:String!
     user:User!
   }
 
   type Query{
-    getPosts(): [Post]
-    getPost(_id:ID):Post
+    getPosts: [Post]
+    getPost(_id:ID!):Post
     
   }
 
   type Mutation{
-    createPost(title:String!, caption:String!):Post
-    updatePost(_id:ID!, caption:String!, title:String!):Post
-    deletePost(_id:ID!):Status
-    signup(email:String!, fullname:String!, password:String!):User
+    
+    signup(email:String!, fullName:String!, password:String!):User
     login(email:String!, password:String!):User
   }
 

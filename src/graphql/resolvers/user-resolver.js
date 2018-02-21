@@ -5,9 +5,7 @@ export default {
     try {
       const [firstName, ...lastName] = fullName.split(' ');
       const user = await User.create({ firstName, lastName, ...rest });
-      return {
-        user
-      };
+      return user;
     } catch (err) {
       throw err;
     }

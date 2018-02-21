@@ -13,6 +13,8 @@ import './config/db';
 import constants from './config/constants';
 import middlewares from './config/middlewares';
 
+import mocks from './mocks';
+
 const app = express();
 const graphQLServer = createServer(app);
 
@@ -37,12 +39,14 @@ app.use(
   })
 );
 
-graphQLServer.listen(constants.PORT, err => {
-  if (err) {
-    console.err(err);
-  } else {
-    console.log(`
-    ====== App running on ${constants.PORT}
-    ====== ${process.env.NODE_ENV} ======`);
-  }
+mocks().then(() => {
+  graphQLServer.listen(constants.PORT, err => {
+    if (err) {
+      console.err(err);
+    } else {
+      console.log(`
+      ====== App running on ${constants.PORT}
+      ====== ${process.env.NODE_ENV} ======`);
+    }
+  });
 });

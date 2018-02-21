@@ -3,6 +3,7 @@ import constants from './constants';
 
 mongoose.Promise = global.Promise;
 
+mongoose.set('debug', true);
 try {
   mongoose.connect(constants.DB_URL);
 } catch (err) {
