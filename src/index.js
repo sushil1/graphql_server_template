@@ -1,19 +1,48 @@
 import express from 'express';
+import { createServer } from 'http';
+import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
+import { makeExecutableSchema } from 'graphql-tools';
+import { execute } from 'graphql';
 
 require('dotenv').config();
+
+import typeDefs from './graphql/schema';
+import resolvers from './graphql/resolvers';
 
 import './config/db';
 import constants from './config/constants';
 import middlewares from './config/middlewares';
 
 const app = express();
+const graphQLServer = createServer(app);
 
 middlewares(app);
 
-app.listen(constants.PORT, err => {
-  if (err) console.err(err);
+app.use(
+  '/graphiql',
+  graphiqlExpress({
+    endpointURL: constants.GRAPHQL_PATH
+  })
+);
 
-  console.log(`
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
+});
+
+app.use(
+  constants.GRAPHQL_PATH,
+  graphqlExpress({
+    schema
+  })
+);
+
+graphQLServer.listen(constants.PORT, err => {
+  if (err) {
+    console.err(err);
+  } else {
+    console.log(`
     ====== App running on ${constants.PORT}
     ====== ${process.env.NODE_ENV} ======`);
+  }
 });
