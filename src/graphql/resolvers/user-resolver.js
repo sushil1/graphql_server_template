@@ -5,7 +5,6 @@ export default {
     try {
       const [firstName, ...lastName] = fullName.split(' ');
       const user = await User.create({ firstName, lastName, ...rest });
-      console.log('=======', user._toAuthJSON());
       return user._toAuthJSON();
     } catch (err) {
       throw err;
