@@ -5,6 +5,7 @@ export default `
   }
 
   type Auth{
+    email:String!
     token:String!
   }
 
@@ -31,8 +32,8 @@ export default `
 
   type Mutation{
     
-    signup(email:String!, fullName:String!, password:String!):User
-    login(email:String!, password:String!):User
+    signup(email:String!, fullName:String!, password:String!):Auth
+    login(email:String!, password:String!):Auth
   }
 
   schema {

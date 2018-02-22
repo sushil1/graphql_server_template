@@ -8,19 +8,18 @@ const userSchema = new Schema(
   {
     email: {
       type: String,
+      lowercase: true,
+      trim: true,
+      required: true,
+      index: true,
       unique: true
     },
-    firstName: {
-      type: String
-    },
-    lastName: {
-      type: String
-    },
-    avatar: {
-      type: String
-    },
+    firstName: String,
+    lastName: String,
+    avatar: String,
     password: {
-      type: String
+      type: String,
+      required: true
     }
   },
   { timestamps: true }
@@ -44,7 +43,14 @@ userSchema.methods = {
   },
 
   _createToken() {
-    jwt.sign({ _id: this._id }, constants.JWT_SECRET);
+    return jwt.sign({ _id: this._id }, constants.JWT_SECRET);
+  },
+
+  _toAuthJSON() {
+    return {
+      email: this.email,
+      token: this._createToken()
+    };
   }
 };
 
