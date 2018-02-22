@@ -12,6 +12,9 @@ export default {
   },
   Mutation: {
     signup: UserResolver.signup,
-    login: UserResolver.login
+    login: UserResolver.login,
+    createPost: PostResolver.createPost,
+    updatePost: PostResolver.updatePost,
+    deletePost: PostResolver.deletePost
   }
 };

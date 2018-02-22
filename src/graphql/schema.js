@@ -34,6 +34,10 @@ export default `
     
     signup(email:String!, fullName:String!, password:String!):Auth
     login(email:String!, password:String!):Auth
+    createPost(title:String!, caption:String!):Post
+    updatePost(_id:ID, title:String, caption:String):Post
+    deletePost(_id:ID!):Status
+
   }
 
   schema {
