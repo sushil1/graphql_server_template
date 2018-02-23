@@ -8,7 +8,9 @@ export default {
   },
   Query: {
     getPosts: PostResolver.getPosts,
-    getPost: PostResolver.getPost
+    getPost: PostResolver.getPost,
+    me: UserResolver.me,
+    getUserPosts: PostResolver.getUserPosts
   },
   Mutation: {
     signup: UserResolver.signup,

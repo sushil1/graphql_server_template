@@ -1,4 +1,5 @@
 import User from '../../models/User';
+import { requireAuth } from '../../services/auth';
 
 export default {
   signup: async (_, { fullName, ...rest }) => {
@@ -20,6 +21,14 @@ export default {
         throw new Error('Wrong password');
       }
       return user._toAuthJSON();
+    } catch (err) {
+      throw err;
+    }
+  },
+  me: async (_, args, { currentUser }) => {
+    try {
+      const me = await requireAuth(currentUser);
+      return me;
     } catch (err) {
       throw err;
     }

@@ -58,5 +58,17 @@ export default {
     } catch (err) {
       throw err;
     }
+  },
+
+  getUserPosts: async (_, args, { currentUser }) => {
+    try {
+      await requireAuth(currentUser);
+      const posts = await Post.find({ user: currentUser._id }).sort({
+        createdAt: -1
+      });
+      return posts;
+    } catch (err) {
+      throw err;
+    }
   }
 };

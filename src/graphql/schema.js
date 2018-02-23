@@ -17,6 +17,14 @@ export default `
     avatar:String
   }
 
+  type Me{
+    _id:ID!
+    email:String!
+    firstName:String
+    lastName:String
+    avatar:String
+  }
+
   type Post{
     _id:ID!
     title:String!
@@ -27,6 +35,8 @@ export default `
   type Query{
     getPosts: [Post]
     getPost(_id:ID!):Post
+    me: Me
+    getUserPosts: [Post]
     
   }
 
