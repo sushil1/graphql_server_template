@@ -1,4 +1,5 @@
 export default `
+  scalar Date
 
   type Status{
     message: String!
@@ -15,6 +16,8 @@ export default `
     firstName:String
     lastName:String
     avatar:String
+    createdAt:Date!
+    updatedAt:Date!
   }
 
   type Me{
@@ -23,6 +26,8 @@ export default `
     firstName:String
     lastName:String
     avatar:String
+    createdAt:Date!
+    updatedAt:Date!
   }
 
   type Post{
@@ -30,6 +35,8 @@ export default `
     title:String!
     caption:String!
     user:User!
+    createdAt:Date!
+    updatedAt:Date!
   }
 
   type Query{
