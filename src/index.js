@@ -34,19 +34,22 @@ const schema = makeExecutableSchema({
 
 app.use(
   constants.GRAPHQL_PATH,
-  graphqlExpress({
-    schema
-  })
+  graphqlExpress(req => ({
+    schema,
+    context: {
+      currentUser: req.user
+    }
+  }))
 );
 
-mocks().then(() => {
-  graphQLServer.listen(constants.PORT, err => {
-    if (err) {
-      console.err(err);
-    } else {
-      console.log(`
+// mocks().then(() => {
+graphQLServer.listen(constants.PORT, err => {
+  if (err) {
+    console.err(err);
+  } else {
+    console.log(`
       ====== App running on ${constants.PORT}
       ====== ${process.env.NODE_ENV} ======`);
-    }
-  });
+  }
 });
+// });
